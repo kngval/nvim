@@ -41,7 +41,7 @@ return {
       term:toggle()
     end
 
-    -- Function to open a vertical terminal
+    -- Function to open a vertical terminal with specified width
     function _G.open_vertical_terminal()
       local term = require("toggleterm.terminal").Terminal:new({
         direction = "vertical",
