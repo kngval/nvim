@@ -9,12 +9,7 @@ return {
   },
   config = function()
     local neotree_toggle = function()
-      local state = require("neo-tree.sources.manager").get_state("filesystem")
-      if state and state.winid and vim.api.nvim_win_is_valid(state.winid) then
-        -- Close Neo-tree if it's open
-        require("neo-tree.command").execute({ action = "close" })
-      else
-        -- Open Neo-tree if it's closed
+       -- Open Neo-tree if it's closed
         require("neo-tree.command").execute({
           action = "focus",
           source = "filesystem",
@@ -23,8 +18,9 @@ return {
           cwd = vim.fn.getcwd(), -- Set the current working directory as the root
         })
       end
-    end
 
+
+      
     vim.keymap.set("n", "<C-n>", neotree_toggle, { desc = "Toggle Neotree in Current Directory" })
 
     require("neo-tree").setup({
