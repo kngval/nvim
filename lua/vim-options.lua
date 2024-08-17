@@ -7,3 +7,4 @@ vim.g.mapleader = " "
 -- Example for init.lua
 vim.opt.termguicolors = true
 
+

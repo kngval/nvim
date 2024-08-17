@@ -19,8 +19,6 @@ return {
         })
       end
 
-
-      
     vim.keymap.set("n", "<C-n>", neotree_toggle, { desc = "Toggle Neotree in Current Directory" })
 
     require("neo-tree").setup({
@@ -28,6 +26,7 @@ return {
       window = {
         position = "left",
         width = 30,
+        border = "rounded", -- Add this line to set the border style
         mappings = {
           ["R"] = "rename",
         },
@@ -40,6 +39,7 @@ return {
         window = {
           position = "float",
           width = 30,
+          border = "rounded", -- Add this line to set the border style for the git_status window
         },
       },
     })

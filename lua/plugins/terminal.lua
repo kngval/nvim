@@ -33,18 +33,34 @@ return {
     -- Apply the terminal key mappings when terminal opens
     vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 
+    -- Create a global table to store terminal instances
+    _G.terminal_instances = {}
+
     -- Function to open a horizontal terminal
     function _G.open_horizontal_terminal()
       local term = require("toggleterm.terminal").Terminal:new({
         direction = "horizontal",
       })
       term:toggle()
+      table.insert(_G.terminal_instances, term)
     end
 
     -- Function to open a vertical terminal with specified width
     function _G.open_vertical_terminal()
       local term = require("toggleterm.terminal").Terminal:new({
         direction = "vertical",
+      })
+      term:toggle()
+      table.insert(_G.terminal_instances, term)
+    end
+
+    -- Function to open a floating terminal
+    function _G.open_floating_terminal()
+      local term = require("toggleterm.terminal").Terminal:new({
+        direction = "float",
+        float_opts = {
+          border = "rounded", -- Optional: specify border style
+        },
       })
       term:toggle()
     end
@@ -55,20 +71,26 @@ return {
     -- Key mapping to open a vertical terminal
     vim.api.nvim_set_keymap('n', '<leader>tv', ':lua open_vertical_terminal()<CR>', { noremap = true, silent = true })
 
+    -- Key mapping to open a floating terminal
+    vim.api.nvim_set_keymap('n', '<leader>tf', ':lua open_floating_terminal()<CR>', { noremap = true, silent = true })
+
     -- Function to close the current terminal
     function _G.close_current_terminal()
-      local term = require("toggleterm.terminal").Terminal:get(0)
-      if term then
-        term:close()
+      for i, term in ipairs(_G.terminal_instances) do
+        if term:is_open() then
+          term:close()
+          table.remove(_G.terminal_instances, i)
+          break
+        end
       end
     end
 
-    -- Function to close all terminals (using a list of open terminals)
+    -- Function to close all terminals
     function _G.close_all_terminals()
-      local term_list = require("toggleterm.terminal").get_all() or {}
-      for _, term in ipairs(term_list) do
+      for i, term in ipairs(_G.terminal_instances) do
         term:close()
       end
+      _G.terminal_instances = {}
     end
 
     -- Key mapping to close the current terminal

@@ -36,7 +36,7 @@ return {
 			lspconfig.omnisharp.setup({
 				cmd = { "C:/ProgramData/chocolatey/lib/omnisharp/tools/OmniSharp.exe" },
 				capabilities = capabilities,
-			--	root_dir = lspconfig.util.root_pattern(".csproj", ".sln"),
+				--	root_dir = lspconfig.util.root_pattern(".csproj", ".sln"),
 			})
 			--[[lspconfig.csharp_ls.setup({
         capabilities = capabilities,
@@ -96,7 +96,9 @@ return {
 				"<cmd>lua vim.diagnostic.setloclist()<CR>",
 				{ noremap = true, silent = true }
 			)
-
+			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+				border = "rounded",
+			})
 			vim.api.nvim_set_keymap(
 				"n",
 				"<leader>h",

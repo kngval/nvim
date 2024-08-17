@@ -1,26 +1,26 @@
 return {
-  
-    "catppuccin/nvim",
-  lazy = false,
-  priority = 1000,
-  config = function()
-    require("catppuccin").setup({
-      transparent_background = true
-    })
-    vim.cmd.colorscheme "catppuccin"
-  end
-  
 
-  --[["folke/tokyonight.nvim",
-  lazy = false,
-  priority = 1000,
-  config = function()
-    require("tokyonight").setup({
-      style = "night", -- can be 'night', 'storm', 'day'
-      transparent = true, -- Enable transparency
-    })
+	--   "catppuccin/nvim",
+	-- lazy = false,
+	-- priority = 1000,
+	-- config = function()
+	--   require("catppuccin").setup({
+	--   })
+	--   vim.cmd.colorscheme "catppuccin-mocha"
+	-- end
 
-    vim.cmd("colorscheme tokyonight")
-  end,
-  ]]
+	"EdenEast/nightfox.nvim",
+	config = function()
+		-- Load the duskfox variant
+		require("nightfox").setup({
+			options = {
+				styles = {
+					comments = "italic",
+					keywords = "bold",
+					types = "italic,bold",
+				},
+			},
+		})
+		vim.cmd("colorscheme duskfox")
+	end,
 }
