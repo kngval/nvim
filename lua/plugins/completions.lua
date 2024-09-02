@@ -2,10 +2,13 @@ return {
     {
         "hrsh7th/nvim-cmp",
         dependencies = {
-            "hrsh7th/cmp-nvim-lsp",
-            "L3MON4D3/LuaSnip",
-            "saadparwaiz1/cmp_luasnip",
-            "rafamadriz/friendly-snippets",
+            "L3MON4D3/LuaSnip",                 -- Snippet engine
+            "hrsh7th/cmp-nvim-lsp",             -- LSP source for nvim-cmp
+            "hrsh7th/cmp-buffer",               -- Buffer source for nvim-cmp
+            "hrsh7th/cmp-path",                 -- Path source for nvim-cmp
+            "hrsh7th/cmp-cmdline",              -- Command-line source for nvim-cmp
+            "saadparwaiz1/cmp_luasnip",         -- Luasnip completion source
+            "rafamadriz/friendly-snippets",     -- Predefined snippets for different languages
         },
         config = function()
             local cmp = require("cmp")
@@ -33,14 +36,25 @@ return {
                     { name = "luasnip" },
                 }, {
                     { name = "buffer" },
+                    { name = "path" },
                 }),
             })
 
+            -- Setup for command-line completion
             cmp.setup.cmdline({ "/", "?" }, {
                 mapping = cmp.mapping.preset.cmdline(),
                 sources = {
                     { name = "buffer" },
                 },
+            })
+
+            cmp.setup.cmdline(":", {
+                mapping = cmp.mapping.preset.cmdline(),
+                sources = cmp.config.sources({
+                    { name = "path" },
+                }, {
+                    { name = "cmdline" },
+                }),
             })
         end,
     },

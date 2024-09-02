@@ -59,13 +59,10 @@ return {
 			})
 			lspconfig.html.setup({
 				capabilities = capabilities,
-				cmd = { "C:/Users/brent/AppData/Roaming/npm/html-languageserver.cmd", "--stdio" },
-				filetypes = { "html" },
 				init_options = {
 					configurationSection = { "html", "css", "javascript" },
 					embeddedLanguages = { css = true, javascript = true },
 				},
-				settings = {},
 			})
 
 			-- Key mappings
