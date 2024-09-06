@@ -25,7 +25,7 @@ return {
       sources = { "filesystem", "git_status" },
       window = {
         position = "left",
-        width = 30,
+        width = 25,
         border = "rounded", -- Add this line to set the border style
         mappings = {
           ["R"] = "rename",
