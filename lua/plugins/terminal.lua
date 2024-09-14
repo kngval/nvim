@@ -5,7 +5,7 @@ return {
     size = 20,
     open_mapping = [[<C-t>]],
     direction = "horizontal",
-    shell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    shell = "/usr/bin/bash",
   },
   config = function()
     local toggleterm = require("toggleterm")
@@ -15,7 +15,7 @@ return {
       size = 20,
       open_mapping = [[<C-t>]],
       direction = "horizontal",
-      shell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      shell = "/usr/bin/bash",
     })
 
     -- Key mappings for toggling in normal mode
