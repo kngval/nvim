@@ -16,26 +16,12 @@ return {
           "omnisharp",
           "clangd",
           "cssls",
-          "tsserver",
+          "ts_ls",
           "pylsp",
           "tailwindcss",
         },
       })
 
-      require("mason-lspconfig").setup_handlers({
-        function(server_name) -- default handler (optional)
-          -- Setup lspconfig for each server
-          local lspconfig = require("lspconfig")
-          lspconfig[server_name].setup({})
-        end,
-        ["tsserver"] = function()
-          -- Specific handler for tsserver
-          require("lspconfig").ts_ls.setup({
-            filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "typescript.tsx"},
-            cmd = { "typescript-language-server", "--stdio" }
-          })
-        end,
-      })
     end,
   },
   {
@@ -62,7 +48,7 @@ return {
       lspconfig.cssls.setup({
         capabilities = capabilities,
       })
-      lspconfig.tsserver.setup({
+      lspconfig.ts_ls.setup({
         capabilities = capabilities,
         filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
       })
