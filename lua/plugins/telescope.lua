@@ -11,7 +11,7 @@ return {
       vim.keymap.set('n', '<C-p>', function()
         builtin.find_files({
           cwd = search_dir,
-          -- find_command = { "rg", "--files", "--iglob", "!.git", "--hidden", "--glob", "!node_modules/**", "--glob", "!obj/**", "--glob", "!bin/**" }
+          find_command = { "rg", "--files", "--iglob", "!.git", "--hidden", "--glob", "!node_modules/**", "--glob", "!obj/**", "--glob", "!bin/**" }
         })
       end, {})
       vim.keymap.set('n', '<leader>fg', function()
