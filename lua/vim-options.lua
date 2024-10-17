@@ -7,4 +7,7 @@ vim.g.mapleader = " "
 -- Example for init.lua
 vim.opt.termguicolors = true
 
-
+vim.g.VM_maps = {
+    ["Find Under"] = "<C-m>",  -- Remap multi-cursor selection to Ctrl + m
+    ["Find Subword Under"] = "<C-m>",  -- Remap subword selection
+}
