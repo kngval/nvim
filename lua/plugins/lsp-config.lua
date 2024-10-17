@@ -2,7 +2,11 @@ return {
   {
     "williamboman/mason.nvim",
     config = function()
-      require("mason").setup()
+      require("mason").setup({
+       ui = {
+          border = "rounded"
+        } 
+      })
     end,
   },
   {
@@ -98,12 +102,6 @@ return {
       vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
         border = "rounded",
       })
-      vim.api.nvim_set_keymap(
-        "n",
-        "<leader>h",
-        "<cmd>lua vim.lsp.buf.hover()<CR>",
-        { noremap = true, silent = true }
-      )
 
       -- Configure diagnostics
       vim.lsp.handlers["textDocument/publishDiagnostics"] =
