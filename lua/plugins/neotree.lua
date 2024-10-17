@@ -23,20 +23,17 @@ return {
     },
   },
   config = function()
-
-
     local neotree_toggle = function()
-       -- Open Neo-tree if it's closed
-        require("neo-tree.command").execute({
-          action = "focus",
-          source = "filesystem",
-          reveal = true,
-          position = "left",
-          cwd = vim.fn.getcwd(), -- Set the current working directory as the root
-        })
-      end
-          vim.keymap.set("n", "<C-n>", neotree_toggle, { desc = "Toggle Neotree in Current Directory" })
-    -- If you want icons for diagnostic errors, you'll need to define them somewhere:
+      -- Open Neo-tree if it's closed
+      require("neo-tree.command").execute({
+        action = "focus",
+        source = "filesystem",
+        reveal = true,
+        position = "float",
+        cwd = vim.fn.getcwd(),   -- Set the current working directory as the root
+      })
+    end
+    vim.keymap.set("n", "<C-n>", neotree_toggle, { desc = "Toggle Neotree in Current Directory" })
     vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticSignError" })
     vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSignWarn" })
     vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSignInfo" })
@@ -44,7 +41,6 @@ return {
 
     require("neo-tree").setup({
       close_if_last_window = false,
-      popup_border_style = "rounded",
       enable_git_status = true,
       enable_diagnostics = true,
       open_files_do_not_replace_types = { "terminal", "trouble", "qf" },
@@ -98,8 +94,9 @@ return {
         },
       },
       window = {
-        position = "left",
+        position = "float",
         width = 30,
+        border = "rounded",
         mappings = {
           ["<space>"] = { "toggle_node", nowait = false },
           ["<cr>"] = "open",
@@ -142,11 +139,12 @@ return {
         use_libuv_file_watcher = false,
       },
       source_selector = {
-        winbar = true,
-        statusline =true
-      }
+        winbar = false,
+        statusline = false
+      },
 
 
+      popup_border_style = "rounded",
     })
   end
 }
