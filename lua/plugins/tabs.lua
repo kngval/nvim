@@ -1,8 +1,50 @@
 return {
-  'akinsho/bufferline.nvim',
-  version = "*",
-  dependencies = 'nvim-tree/nvim-web-devicons',
-  config = function()
-    require("bufferline").setup {}
-  end
+  -- 'akinsho/bufferline.nvim',
+  -- version = "*",
+  -- dependencies = 'nvim-tree/nvim-web-devicons',
+  -- config = function()
+  --   vim.opt.termguicolors = true
+  --   require('bufferline').setup {
+  --     options = {
+  --       separator_style = "slant", -- Slanted separator style
+  --       show_buffer_close_icons = false,
+  --       show_close_icon = false,
+  --       enforce_regular_tabs = false,
+  --       always_show_bufferline = true,
+  --       diagnostics = "nvim_lsp", -- Optional: show diagnostics
+  --       numbers = "none",     -- Optional: control tab numbering
+  --     },
+  --     highlights = {
+  --       fill = {
+  --         guifg = "none", -- Optional: adjust the foreground color
+  --         guibg = "#000000", -- Transparent background for the fill area
+  --       },
+  --       background = {
+  --         guifg = "none", -- Optional: set tab text color
+  --         guibg = "none", -- Transparent tab background
+  --       },
+  --       separator = {
+  --         guifg = "none", -- Color of the separator (slanted line)
+  --         guibg = "none", -- Transparent background for separators
+  --       },
+  --       separator_selected = {
+  --         guifg = "#ffffff", -- Color of the separator for selected tab
+  --         guibg = "none", -- Transparent background for selected tab separators
+  --       },
+  --       separator_visible = {
+  --         guifg = "none", -- Color for visible but unselected tab separators
+  --         guibg = "none", -- Transparent background
+  --       },
+  --       buffer_selected = {
+  --         guifg = "#ffffff", -- Color of the selected tab text
+  --         gui = "bold",  -- Bold for the selected buffer text
+  --         guibg = "none", -- Transparent background for selected tab
+  --       },
+  --       buffer_visible = {
+  --         guifg = "#888888", -- Dim text color for unselected visible buffers
+  --         guibg = "none", -- Transparent background for unselected visible buffers
+  --       },
+  --     },
+  --   }
+  -- end
 }
