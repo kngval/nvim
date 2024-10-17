@@ -5,7 +5,7 @@ return {
     size = 20,
     open_mapping = [[<C-t>]],
     direction = "horizontal",
-    shell = "/usr/bin/bash",
+    shell = "/usr/bin/zsh",
   },
   config = function()
     local toggleterm = require("toggleterm")
@@ -15,7 +15,7 @@ return {
       size = 20,
       open_mapping = [[<C-t>]],
       direction = "horizontal",
-      shell = "/usr/bin/bash",
+      shell = "/usr/bin/zsh",
     })
 
     -- Key mappings for toggling in normal mode
