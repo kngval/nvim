@@ -7,7 +7,7 @@ return {
     "rcarriga/nvim-dap-ui",
     dependencies = {
       "mfussenegger/nvim-dap",
-      "nvim-neotest/nvim-nio"  -- Ensure dependencies are correctly set
+      "nvim-neotest/nvim-nio", -- Ensure dependencies are correctly set
     },
     config = function()
       local dap = require("dap")
@@ -15,15 +15,13 @@ return {
 
       -- Setup dapui
       dapui.setup()
-
       -- CoreCLR Adapter configuration
       dap.adapters.coreclr = {
         type = 'executable',
-        command = '/usr/bin/netcoredbg',  -- Make sure this path is correct
-        args = {'--interpreter=vscode'}
+        command = '/usr/bin/netcoredbg',
+        args = { '--interpreter=vscode' }
       }
 
-      -- Debugger configurations for C#
       dap.configurations.cs = {
         {
           type = "coreclr",
@@ -35,9 +33,64 @@ return {
           end,
         },
       }
+      -- Node.js Adapter configuration
+      dap.adapters.node2 = {
+        type = 'executable',
+        command = 'node',
+        args = { '/path/to/vscode-node-debug2/out/src/nodeDebug.js' }
+      }
+
+      -- Debugger configurations for Node.js (JS, TS)
+      dap.configurations.javascript = {
+        {
+          name = "Launch Node.js",
+          type = "node2",
+          request = "launch",
+          program = "${file}",
+          cwd = vim.fn.getcwd(),
+          sourceMaps = true,
+          protocol = "inspector",
+          console = "integratedTerminal",
+        },
+        {
+          name = "Attach to process",
+          type = "node2",
+          request = "attach",
+          processId = require 'dap.utils'.pick_process,
+          cwd = vim.fn.getcwd(),
+        },
+      }
+
+      dap.configurations.typescript = dap.configurations.javascript -- Use the same as JavaScript
+
+      -- Chrome Adapter configuration (for React and browser-based debugging)
+      dap.adapters.chrome = {
+        type = "executable",
+        command = "node",
+        args = { "/path/to/vscode-chrome-debug/out/src/chromeDebug.js" },
+      }
+
+      -- Debugger configurations for Chrome (JSX, TSX)
+      dap.configurations.javascriptreact = {
+        {
+          name = "Launch Chrome",
+          type = "chrome",
+          request = "launch",
+          program = "${file}",
+          cwd = vim.fn.getcwd(),
+          sourceMaps = true,
+          protocol = "inspector",
+          runtimeExecutable = "/usr/bin/google-chrome-stable", -- Adjust for your system
+          runtimeArgs = { "--remote-debugging-port=9222" },
+          webRoot = "${workspaceFolder}",
+        },
+      }
+
+      dap.configurations.typescriptreact = dap.configurations.javascriptreact -- Same for TypeScript React
+
 
       -- REPL configuration for DAP
-      dap.configurations.dap_repl= {
+      dap.configurations.dap_repl = {
         {
           name = "DAP REPL",
           type = "coreclr",
@@ -69,11 +122,11 @@ return {
       vim.keymap.set('n', '<Leader>b', function() dap.toggle_breakpoint() end)
       vim.keymap.set('n', '<Leader>B', function() dap.set_breakpoint() end)
       vim.keymap.set('n', '<Leader>lp', function() dap.set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end)
-      vim.keymap.set('n', '<Leader>dr', function() dap.repl.open() end)  -- Open REPL
+      vim.keymap.set('n', '<Leader>dr', function() dap.repl.open() end) -- Open REPL
       vim.keymap.set('n', '<Leader>dl', function() dap.run_last() end)
 
       -- Key mapping to hover (ensure hover is defined)
-      vim.keymap.set({'n', 'v'}, '<Leader>dh', function()
+      vim.keymap.set({ 'n', 'v' }, '<Leader>dh', function()
         local widgets = require('dap.ui.widgets')
         if widgets and widgets.hover then
           widgets.hover()
@@ -83,7 +136,7 @@ return {
       -- Key mapping to close the debugger (terminate session and close UI)
       vim.keymap.set('n', '<Leader>dc', function()
         dap.terminate()
-        dapui.close()  -- Optional: Close DAP UI after terminating
+        dapui.close() -- Optional: Close DAP UI after terminating
       end, { noremap = true, silent = true })
     end,
   }

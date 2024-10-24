@@ -16,6 +16,7 @@ return {
         ensure_installed = {
           "lua_ls",
           "html",
+          "lemminx",
           --   "csharp_ls",
           "omnisharp",
           "clangd",
@@ -40,8 +41,12 @@ return {
       })
       lspconfig.omnisharp.setup({
         cmd = { "/usr/local/bin/omnisharp/OmniSharp" },
+        filetypes = {"cs","vb","xaml","axaml"},
         capabilities = capabilities,
         --	root_dir = lspconfig.util.root_pattern(".csproj", ".sln"),
+      })
+      lspconfig.lemminx.setup({
+        capabilities = capabilities,
       })
       --[[lspconfig.csharp_ls.setup({
         capabilities = capabilities,
@@ -49,8 +54,15 @@ return {
       lspconfig.clangd.setup({
         capabilities = capabilities,
       })
-      lspconfig.cssls.setup({
+       lspconfig.cssls.setup({
         capabilities = capabilities,
+        settings = {
+          css = {
+            lint = {
+              unknownAtRules = 'ignore',  -- Ignore unknown @ rules in CSS
+            },
+          },
+        },
       })
       lspconfig.ts_ls.setup({
         capabilities = capabilities,

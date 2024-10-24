@@ -1,12 +1,12 @@
 return {
   "akinsho/toggleterm.nvim",
   version = "*",
-  opts = {
-    size = 20,
-    open_mapping = [[<C-t>]],
-    direction = "horizontal",
-    shell = "/usr/bin/zsh",
-  },
+  -- opts = {
+  --   size = 20,
+  --   open_mapping = [[<C-t>]],
+  --   direction = "horizontal",
+  --   shell = "/usr/bin/zsh",
+  -- },
   config = function()
     local toggleterm = require("toggleterm")
 
@@ -14,8 +14,11 @@ return {
     toggleterm.setup({
       size = 20,
       open_mapping = [[<C-t>]],
-      direction = "horizontal",
+      direction = "float",
       shell = "/usr/bin/zsh",
+      float_opts = {
+        border = "rounded"
+      }
     })
 
     -- Key mappings for toggling in normal mode
