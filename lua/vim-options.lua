@@ -7,6 +7,10 @@ vim.opt.relativenumber = true
 vim.opt.number = true
 vim.g.mapleader = " "
 -- Example for init.lua
+
+--oil.nvim
+vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+
 vim.opt.termguicolors = true
 vim.g.VM_maps = {
     ["Find Under"] = "<C-m>",  -- Remap multi-cursor selection to Ctrl + m
