@@ -1,8 +1,7 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-
 vim.opt.fileformats = "unix"
 vim.opt.clipboard = 'unnamedplus'
-
+vim.api.nvim_set_keymap('i', '<C-c>', '<Esc>', { noremap = true, silent = true })
 vim.g.clipboard = {
   name = 'WslClipboard',
   copy = {
