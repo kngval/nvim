@@ -2,19 +2,6 @@ local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 vim.opt.fileformats = "unix"
 vim.opt.clipboard = 'unnamedplus'
 vim.api.nvim_set_keymap('i', '<C-c>', '<Esc>', { noremap = true, silent = true })
-vim.g.clipboard = {
-  name = 'WslClipboard',
-  copy = {
-    ['+'] = 'clip.exe',
-    ['*'] = 'clip.exe',
-  },
-  paste = {
-    ['+'] = "powershell.exe -c Get-Clipboard | sed 's/\\r//'",
-    ['*'] = "powershell.exe -c Get-Clipboard | sed 's/\\r//'",
-  },
-  cache_enabled = 0,
-}
-
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
   local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
