@@ -1,5 +1,5 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-vim.opt.fileformats = "unix"
+-- vim.opt.fileformats = "unix"
 vim.opt.clipboard = 'unnamedplus'
 vim.api.nvim_set_keymap('i', '<C-c>', '<Esc>', { noremap = true, silent = true })
 if not (vim.uv or vim.loop).fs_stat(lazypath) then

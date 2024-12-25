@@ -22,7 +22,6 @@ return {
           find_command = { "rg", "--files", "--hidden", "--glob", "!.git/*", "--glob", "!node_modules/**", "--glob", "!obj/**", "--glob", "!bin/**" }
         })
       end, {})
-
       -- Keymap for live grep
       vim.keymap.set('n', '<leader>fg', function()
         local search_dir = get_cwd()
