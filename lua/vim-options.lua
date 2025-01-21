@@ -6,6 +6,7 @@ vim.cmd("set shiftwidth=2")
 vim.opt.relativenumber = true
 vim.opt.number = true
 vim.g.mapleader = " "
+vim.opt.cursorline = true
 -- Example for init.lua
 
 --oil.nvim

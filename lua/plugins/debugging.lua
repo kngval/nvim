@@ -29,7 +29,7 @@ return {
           request = "launch",
           program = function()
             -- Prompt the user to manually enter the path to the DLL
-            return vim.fn.input('Path to dll: ', vim.fn.getcwd() .. '/bin/Debug/net8.0/', 'file')
+            return vim.fn.input('Path to dll: ', vim.fn.getcwd() .. '/bin/Debug/net9.0/', 'file')
           end,
         },
       }
