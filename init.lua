@@ -1,20 +1,20 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
--- vim.opt.fileformats = "unix"
+vim.opt.fileformats = "unix"
 vim.opt.clipboard = 'unnamedplus'
 
 vim.api.nvim_set_keymap('n', 'yy', '"+yy', { noremap = true, silent = true })
-vim.g.clipboard = {
-  name = "clip.exe",
-  copy = {
-    ["+"] = "clip.exe",
-    ["*"] = "clip.exe",
-  },
-  paste = {
-    ["+"] = "powershell.exe -NoProfile -Command [Console]::Out.Write($(Get-Clipboard -Raw))",
-    ["*"] = "powershell.exe -NoProfile -Command [Console]::Out.Write($(Get-Clipboard -Raw))",
-  },
-  cache_enabled = 0,
-}
+-- vim.g.clipboard = {
+--   name = "clip.exe",
+--   copy = {
+--     ["+"] = "clip.exe",
+--     ["*"] = "clip.exe",
+--   },
+--   paste = {
+--     ["+"] = "powershell.exe -NoProfile -Command [Console]::Out.Write($(Get-Clipboard -Raw))",
+--     ["*"] = "powershell.exe -NoProfile -Command [Console]::Out.Write($(Get-Clipboard -Raw))",
+--   },
+--   cache_enabled = 0,
+-- }
 
 -- Function to remove all ^M characters (carriage returns)
 -- Function to remove carriage returns (^M) from the current buffer

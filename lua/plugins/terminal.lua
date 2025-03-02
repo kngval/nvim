@@ -12,7 +12,7 @@ return {
 
     -- Set up toggleterm
     toggleterm.setup({
-      size = 20,
+      size = 10,
       open_mapping = [[<C-t>]],
       direction = "float",
       shell = "/usr/bin/zsh",
